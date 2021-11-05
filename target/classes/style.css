@@ -1,0 +1,47 @@
+/*.button {*/
+/*    -fx-background-color: #1a2634;*/
+/*    -fx-font-size: 12;*/
+/*    -fx-text-fill: #b8b8b8;*/
+/*    -fx-pref-width: 100;*/
+/*    -fx-background-radius: 2em;*/
+/*    -jfx-button-type: RAISED;*/
+/*}*/
+
+.list-cell {
+    -fx-background-color: #E8DAEF;
+    -fx-font-size: 12;
+    -fx-graphic-text-gap: 10;
+}
+
+.list-cell:filled {
+    -fx-text-fill: #6E2C00;
+    -fx-background-radius: 5px;
+}
+
+.list-cell:filled:even {
+    -fx-background-color: rgba(255, 255, 255, 0.12);
+}
+
+.list-cell:filled:selected {
+    -fx-background-color: #4A235A ;
+}
+
+.list-view {
+    -fx-background-color: #C39BD3 ;
+    -fx-border-radius: 10px;
+    -fx-border-color: rgba(255, 255, 255, 0.11);
+}
+
+.scroll-bar {
+    -fx-background-color: #4e4e4e;
+}
+
+.scroll-bar:vertical {
+    -fx-pref-width: 10px;
+}
+
+.scroll-bar.thumb {
+    -fx-background-color: rgba(255, 255, 255, 0.4);
+    -fx-background-insets: 0, 0, 0;
+    -fx-background-radius: 2em;
+}
