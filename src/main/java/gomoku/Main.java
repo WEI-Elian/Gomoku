@@ -18,6 +18,8 @@ public class Main extends Application {
    public static AnchorPane anchorPane;
    public static Scene scene;
    public static Player player;
+   public static String playername1;
+   public static String playername2;
 
 
     public static void main(String[] args) {

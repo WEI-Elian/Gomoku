@@ -10,22 +10,8 @@ import java.util.List;
 public class Save {
 
     private List<Board> staff = new ArrayList<>();
-  /*  public void add(Board board) {
-        File file = new File("./Boards.txt");
-        ObjectInputStream ois = null;
-        try {
-            ois = new ObjectInputStream(new FileInputStream(file));
-            ArrayList<Board> boards = (ArrayList<Board>) ois.readObject();
-            ois.close();
-            boards.add(board);
-            ObjectOutputStream oos = null;
-            oos = new ObjectOutputStream(new FileOutputStream(file));
-            oos.writeObject(boards);
-            oos.close();
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }*/
+    Load load=new Load();
+
 
     public void add(Board board, String name) {
         try {
@@ -43,36 +29,79 @@ public class Save {
 
 
 
-        /*try {
-            File file = new File("./Boards.txt");
-            if (file.exists()) {
-                ObjectInputStream ois = null;
-                ois = new ObjectInputStream(new FileInputStream(file));
-                ArrayList<Board> boards = (ArrayList<Board>) ois.readObject();//从文件里面取出了list放在一个新的list里面了
-                ois.close();
-                boards.add(board);
-                ObjectOutputStream oos = null;
-                oos = new ObjectOutputStream(new FileOutputStream(file));
-                oos.writeObject(boards);
-                System.out.println("存入");
-                oos.close();
-            } else {
-                boolean flag = file.createNewFile();
-                if (flag) {
-                    ObjectOutputStream oos = null;
-                    oos = new ObjectOutputStream(new FileOutputStream(file));
-                    int [][]c=new int[16][16];
-                    staff.add(new Board("1","1",c,"测试文档"));
-                    oos.writeObject(staff);
-                    oos.close();
 
-                }
-            }
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }*/
 
     }
+
+
+
+    public void savepassword(Player player,String newpassword){
+        File file = new File("./Player.txt");
+        ObjectOutputStream oos = null;
+        try {
+            ObjectInputStream ois = null;
+            ois = new ObjectInputStream(new FileInputStream(file));
+            ArrayList<Player> staff = (ArrayList<Player>) ois.readObject();
+            for(Player i:staff){
+                if(i.getName().equals(player.getName())){
+                    i.setPassnum(newpassword);
+                    break;
+                }
+            }
+
+
+            clearInfoForFile(file);
+            oos = new ObjectOutputStream(new FileOutputStream(file));
+            oos.writeObject(staff);
+            oos.close();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+    public void addPlayer(String playername){
+
+        File file = new File("./Player.txt");
+        ObjectOutputStream oos = null;
+        try {
+            ObjectInputStream ois = null;
+            ois = new ObjectInputStream(new FileInputStream(file));
+            ArrayList<Player> staff = (ArrayList<Player>) ois.readObject();
+            staff.add(new Player(playername,"00000"));
+
+
+            clearInfoForFile(file);
+            oos = new ObjectOutputStream(new FileOutputStream(file));
+            oos.writeObject(staff);
+            oos.close();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+
+    public static void clearInfoForFile(File file) {
+
+        try {
+            if(!file.exists()) {
+                file.createNewFile();
+            }
+            FileWriter fileWriter =new FileWriter(file);
+            fileWriter.write("");
+            fileWriter.flush();
+            fileWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
 
 
 }

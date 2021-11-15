@@ -47,15 +47,18 @@ public class LoginController {
             Main.primaryStage.setHeight(850);
             Main.primaryStage.setResizable(false);
             Main.primaryStage.show();*/
-            if("123".equals(player.getPassnum())){
+            if("00000".equals(player.getPassnum())){
+                Main.player=player;
                 Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/View/Resetpassword.fxml")));
                 Scene scene = new Scene(parent);
                 Main.primaryStage.setScene(scene);
 
 
 
-            }else{Main.player=player;
-                PlayerController playerController=new PlayerController();}
+            }else{
+                Main.player=player;
+                PlayerController playerController=new PlayerController();
+            }
 
 
 
@@ -67,4 +70,12 @@ public class LoginController {
             alert.showAndWait();
         }
     }
+
+
+    public void signup(ActionEvent e) throws IOException {
+        Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/View/Signup.fxml")));
+        Scene scene = new Scene(parent);
+        Main.primaryStage.setScene(scene);
+    }
+
 }

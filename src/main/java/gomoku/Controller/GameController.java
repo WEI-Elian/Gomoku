@@ -8,8 +8,12 @@ import gomoku.Fuction.PlayChess;
 import gomoku.Main;
 import gomoku.SaveLoad.Load;
 import gomoku.SaveLoad.Save;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -17,6 +21,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -27,12 +32,18 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import javax.imageio.ImageIO;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class GameController {
 
     Button button1;//保存存档按键
     Button button2;//退出到主界面
+    Button button3;//复盘按键
+    Button button4;
 
 
     private String player1;
@@ -71,12 +82,42 @@ public class GameController {
         this.button1 = button1;
         button1.setLayoutY(600);
         button1.setLayoutX(850);
+
+//        Button button3=new JFXButton("截图");
+//        this.button3=button3;
+//        button3.setLayoutX(850);
+//        button3.setLayoutY(550);
+//        Main.anchorPane.getChildren().add(button3);
+
+
+
+
+
+        Button button4=new JFXButton("复盘");
+        this.button4=button4;
+        button4.setLayoutX(850);
+        button4.setLayoutY(500);
+        Main.anchorPane.getChildren().add(button4);
+
+
         Main.anchorPane.getChildren().add(button1);
         Button button2 = new JFXButton("离开本局");
         this.button2 = button2;
         button2.setLayoutY(650);
         button2.setLayoutX(850);
         Main.anchorPane.getChildren().add(button2);
+
+        Label label1=new Label("黑方："+player1);
+        Label label2=new Label("白方："+player2);
+
+        label1.setLayoutX(850);
+        label1.setLayoutY(100);
+
+        label2.setLayoutX(850);
+        label2.setLayoutY(200);
+
+        Main.anchorPane.getChildren().add(label1);
+        Main.anchorPane.getChildren().add(label2);
 
 
         button1.setOnAction(event -> {
@@ -88,9 +129,31 @@ public class GameController {
             PlayerController playerController = new PlayerController();
 
         });
-
+//        button3.setOnAction(event -> {
+//           snapshot(Main.anchorPane,"111");
+//        });
+        button4.setOnAction(event -> {
+            Parent parent = null;
+            try {
+                parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/View/Replay.fxml")));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Scene scene = new Scene(parent);
+            Main.primaryStage.setScene(scene);
+        });
 
     }
+
+//    public void snapshot(Node view,String photoname) {
+//        Image image = view.snapshot(null, null);
+//        try {
+//            ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png",
+//                    new File("D:\\GitHub\\Gomoku\\src\\main\\resources\\Screenshot\\" + photoname + ".png"));
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     public void letusplay(Scene scene) {
         final PlayChess[] go = {new PlayChess()};

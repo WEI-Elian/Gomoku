@@ -65,9 +65,9 @@ public class ReadBoardController {
                 Canvas canvas1 = new Canvas(900, 900);
 
 
-
                 drawstaff.drawChessPane(canvas1);
                 anchorPane.getChildren().add(canvas1);
+
 
                 Scene scene = new Scene(anchorPane);
                 scene.getStylesheets().add("/style.css");

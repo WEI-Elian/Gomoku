@@ -35,28 +35,35 @@ public class Drawstaff {
     }
 
 
-    public void drawBlackChessUnit(AnchorPane anchorPane, Integer i, Integer j,Integer num) {
-        Button button =  new Button();
+    public void drawBlackChessUnit(AnchorPane anchorPane, Integer i, Integer j, Integer num) {
+
+        Button button = new Button();
+
         anchorPane.getChildren().add(button);
+
         button.setText(num.toString());
+
         button.setStyle("-fx-background-color: #000;-fx-background-radius: 30; -fx-effect:dropshadow(three-pass-box, #72b9da, 8.0,0, 0, 0);-fx-text-fill: white;  ");
+
         drawChessUnit(button, i, j);
+
     }
 
-    public void drawWhiteChessUnit(AnchorPane anchorPane, Integer i, Integer j,Integer num) {
-        Button button =  new Button();
+    public void drawWhiteChessUnit(AnchorPane anchorPane, Integer i, Integer j, Integer num) {
+        Button button = new Button();
         anchorPane.getChildren().add(button);
         button.setText(num.toString());
         button.setStyle("-fx-background-radius: 30; -fx-effect:dropshadow(three-pass-box, #72b9da, 8.0,0, 0, 0); ");
         drawChessUnit(button, i, j);
 
     }
-    public void drawChessUnit( Button button, Integer i, Integer j ) {
+
+    public void drawChessUnit(Button button, Integer i, Integer j) {
 
         button.setFocusTraversable(false);
         button.setPrefSize(40, 40);
-        button.setLayoutX((i+1)*chessPaneUnitWidth-40/2);
-        button.setLayoutY((j+1)*chessPaneUnitWidth-40/2);
+        button.setLayoutX((i + 1) * chessPaneUnitWidth - 40 / 2);
+        button.setLayoutY((j + 1) * chessPaneUnitWidth - 40 / 2);
     }
 
     public int[] getPoint(double x, double y) {
@@ -93,14 +100,15 @@ public class Drawstaff {
         }
         return null;
     }
-    public void drawPoint(int i, int j, AnchorPane anchorPane, Boolean isBlack,Integer num) {
+
+    public void drawPoint(int i, int j, AnchorPane anchorPane, Boolean isBlack, Integer num) {
         if (isBlack) {
 
-            drawBlackChessUnit(anchorPane, i , j,num);
+            drawBlackChessUnit(anchorPane, i, j, num);
 
         } else {
 
-            drawWhiteChessUnit(anchorPane, i , j , num);
+            drawWhiteChessUnit(anchorPane, i, j, num);
 
         }
 

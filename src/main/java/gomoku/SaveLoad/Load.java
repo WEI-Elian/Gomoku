@@ -46,6 +46,34 @@ public class Load {
 
     }
 
+
+
+    public boolean findPlayer(String name) throws IOException {
+        try {
+            File file = new File("./Player.txt");
+            if (file.exists()) {
+                ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
+                List<Player> players = (List<Player>) ois.readObject();
+                ois.close();
+                for (Player i : players) {
+                    System.out.println(i.getName());
+                    System.out.println(i.getPassnum());
+                    if (i.getName().equals(name)) {
+                        return true;
+                    }
+                }
+
+            }
+        } catch (FileNotFoundException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+
+
+    }
+
+
     public ArrayList<String> loadallBoard(Player player) {
       /*  File file = new File("./Boards.txt");
         ObjectOutputStream oos = null;
@@ -110,6 +138,34 @@ public class Load {
         }
 
       return null;
+    }
+
+
+    public ArrayList<Board> Boardall(Player player) {
+
+        ArrayList<Board> staff = new ArrayList<>();
+        try {
+            File work = new File("saves/");
+            File[] files = work.listFiles();
+            if (files != null && files.length != 0) {
+                for (int i = 0; i < files.length; i++) {
+                    ObjectInputStream input = new ObjectInputStream(new FileInputStream(files[i]));
+                    Board board=(Board) (input.readObject());
+                    if(player.getName().equals(board.getPlayer1())||player.getName().equals(board.getPlayer2())){
+                        staff.add(board);
+                    }
+                    /* staff.add((Board) (input.readObject()));*/
+                }
+            }
+            return staff;
+
+
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+
+        }
+
+        return null;
     }
 
 
